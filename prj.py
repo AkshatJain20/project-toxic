@@ -30,15 +30,6 @@ label = df[['toxic', 'severe_toxic' , 'obscene' , 'threat' , 'insult' , 'identit
 # In[5]:
 
 
-ct1,ct2 = 0,0
-for i in range(label.shape[0]):
-    ct = np.count_nonzero(label[i])
-    if ct :
-        ct1 = ct1+1
-    if ct>1 :
-        ct2 = ct2+1
-print(ct1)
-print(ct2)
 
 
 # In[6]:
@@ -93,7 +84,6 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 lemmatiser = WordNetLemmatizer()
 stemmer = PorterStemmer()
-#download words from wordnet library
 nltk.download('wordnet')
 
 
@@ -152,7 +142,7 @@ joblib.dump(classifier, "job_model")
 # In[58]:
 
 
-com = "U suck!! go get a life"
+com = "You are bad"
 
 
 # In[59]:
@@ -163,8 +153,6 @@ com = com.lower().translate(trantab)
 
 # In[101]:
 
-
-com
 
 
 # In[60]:
@@ -199,7 +187,6 @@ pred = classifier.predict(test)
 # In[51]:
 
 
-pred
 
 
 # In[64]:
@@ -210,8 +197,6 @@ pred[:,:].toarray()
 
 # In[30]:
 
-
-com
 
 
 # In[ ]:
