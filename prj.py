@@ -64,12 +64,6 @@ trantab = str.maketrans(punctuation_edit, outtab)
 # In[9]:
 
 
-from stop_words import get_stop_words
-stop_words = get_stop_words('english')
-stop_words.append('')
-
-for x in range(ord('b'), ord('z')+1):
-    stop_words.append(chr(x))
 
 
 # In[10]:
@@ -85,15 +79,17 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 lemmatiser = WordNetLemmatizer()
 stemmer = PorterStemmer()
 nltk.download('wordnet')
-
+from nltk.corpus import stopwords
 
 # In[12]:
 
 
 for i in range(len(comments)):
     comments[i] = comments[i].lower().translate(trantab)
+    comments[i] = comments[i].split()
+    comments[i] = [word for word in comments[i] if not word in set(stopwords.words("english"))]
     l = []
-    for word in comments[i].split():
+    for word in comments[i]:
         l.append(stemmer.stem(lemmatiser.lemmatize(word,pos="v")))
     comments[i] = " ".join(l)
 
