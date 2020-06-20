@@ -86,8 +86,10 @@ nltk.download('wordnet')
 
 for i in range(len(comments)):
     comments[i] = comments[i].lower().translate(trantab)
+    comments[i] = comments[i].split()
+    comments[i] = [word for word in comments[i] if not word in set(stopwords.words('english')) ]
     l = []
-    for word in comments[i].split():
+    for word in comments[i]:
         l.append(stemmer.stem(lemmatiser.lemmatize(word,pos="v")))
     comments[i] = " ".join(l)
 
