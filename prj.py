@@ -145,15 +145,6 @@ com = input("Enter your comment:")
 
 
 com = com.lower().translate(trantab)
-
-
-# In[101]:
-
-
-
-# In[60]:
-
-
 x = []
 com = com.split()
 for word in com:    
@@ -162,34 +153,21 @@ com = " ".join(x)
 
 
 # In[61]:
-
-
 cc = []
 cc.append(com)
-
-
-# In[62]:
-
-
 test = vectorizer.transform(cc).toarray()
-
-
-# In[63]:
-
-
 pred = classifier.predict(test)
 
-
-# In[51]:
 if pred[:,:].toarray().any() == 1:
     print("abusive comment")
 else:
     print("comment is fine")
 classes = ['toxic', 'severe_toxic' , 'obscene' , 'threat' , 'insult' , 'identity_hate']
+categories = []
 for k in range(0,6):
     if pred[0,k] == 1:
-        print(classes[k])
-
+        categories.append(classes[k])
+print("categories of abusive comment:", categories)
 
 
 # In[64]:
