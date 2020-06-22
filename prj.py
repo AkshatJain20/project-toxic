@@ -167,7 +167,8 @@ categories = []
 for k in range(0,6):
     if pred[0,k] == 1:
         categories.append(classes[k])
-print("categories of abusive comment:", categories)
+if pred[:,:].toarray().any() == 1:
+    print("categories of abusive comment:", categories)
 
 
 # In[64]:
