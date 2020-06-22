@@ -138,7 +138,7 @@ joblib.dump(classifier, "job_model")
 # In[58]:
 
 
-com = "You are bad"
+com = input("Enter your comment:")
 
 
 # In[59]:
@@ -181,14 +181,20 @@ pred = classifier.predict(test)
 
 
 # In[51]:
-
+if pred[:,:].toarray().any() == 1:
+    print("abusive comment")
+else:
+    print("comment is fine")
+classes = ['toxic', 'severe_toxic' , 'obscene' , 'threat' , 'insult' , 'identity_hate']
+for k in range(0,6):
+    if pred[0,k] == 1:
+        print(classes[k])
 
 
 
 # In[64]:
 
 
-pred[:,:].toarray()
 
 
 # In[30]:
